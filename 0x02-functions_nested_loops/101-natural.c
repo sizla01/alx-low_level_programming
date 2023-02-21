@@ -1,21 +1,22 @@
 #include <stdio.h>
 /**
- * main - mainfuction
+ * main - main ifuction
  *
- * Return: always (success)
+ * Return: always 0 (success)
  */
 int main(void)
 {
-	int i, z = 0;
+	int i;
+	int sum;
 
-	while (i < 1024)
+	sum = 0;
+	for (i = 0; i < 1024; i++)
 	{
 		if ((i % 3 == 0) || (i % 5 == 0))
 		{
-			z += i;
+			sum = sum + i;
 		}
-		i++
 	}
-	printf("%d\n", z);
+	printf("%d\n", SUM);
 	return (0);
 }
