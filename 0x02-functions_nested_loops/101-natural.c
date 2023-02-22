@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "main.h"
 /**
  * main - prints the last sum of all mutiples of 3 or 5 upto 1024
  *
@@ -16,6 +17,6 @@ int main(void)
 		}
 		i++;
 	}
-	printf("%s\n", z);
+	printf("%d\n", z);
 	return (0);
 }
