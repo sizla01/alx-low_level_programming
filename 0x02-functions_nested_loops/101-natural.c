@@ -1,22 +1,21 @@
 #include <stdio.h>
 /**
- * main - main ifuction
+ * main - prints the last sum of all mutiples of 3 or 5 upto 1024
  *
  * Return: always 0 (success)
  */
 int main(void)
 {
-	int i;
-	int sum;
+	int i, z = 0;
 
-	sum = 0;
-	for (i = 0; i < 1024; i++)
+	while (i < 1024)
 	{
 		if ((i % 3 == 0) || (i % 5 == 0))
 		{
-			sum = sum + i;
+			z += i;
 		}
+		i++;
 	}
-	printf("%d\n", SUM);
+	printf("%s\n", z);
 	return (0);
 }
