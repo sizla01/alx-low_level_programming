@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * 0-reset_to_98.c - Takes a pointer to an int and updates the value it points to to 98
+ * reset_to_98 - Takes a pointer to an int and updates the value it points to to 98
  *
  * @n: integer input
  *
