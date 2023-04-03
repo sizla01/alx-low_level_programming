@@ -1,49 +1,64 @@
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - function that insert a node in a idx position
- * @head: pointer to head in function
- * @idx: index or position to be added
- * @n: node's value
- * Return: nth node data
+ * insert_nodeint_at_index - returns the nth node of a linked list
+ * @head: pointer to the head of the list
+ * @idx: index of the node to be added
+ * @n: content of the new node
+ *
+ * Return: the address of the node
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	unsigned int nodes;
-	listint_t *node_index = *head;
-	listint_t *new_node, *node_after;
-
-	if (head == NULL || *head == NULL)
-		return (NULL);
-
-	for (nodes = 0; node_index != NULL; nodes++)
-		node_index = node_index->next;
-
-	if (idx > (nodes + 1))
-		return (NULL);
-
-	node_index = *head;
+	listint_t *new_node = NULL;
+	listint_t *previous_node = NULL;
+	unsigned int i = 0;
 
 	new_node = malloc(sizeof(listint_t));
-	if (new_node == NULL)
+	if (new_node == NULL || idx > listint_len(*head))
+	{
+		free(new_node);
 		return (NULL);
+	}
 	new_node->n = n;
+	new_node->next = NULL;
+	while (head != NULL)
+	{
+		if (i == idx)
+		{
+			if (i == 0)
+			{
+				new_node->next = *head;
+				*head = new_node;
+				return (new_node);
+			}
+			new_node->next = previous_node->next;
+			previous_node->next = new_node;
+			return (new_node);
+		}
+		else if ((i + 1) == idx)
+			previous_node = *head;
+		head = &((*head)->next);
+		i++;
+	}
+	return (NULL);
+}
 
-	if (idx == 0)
+/**
+ * listint_len - counts the number of nodes in a linked list
+ * @h: head of the list
+ *
+ * Return: the number of elements
+ */
+size_t listint_len(const listint_t *h)
+{
+	const listint_t *cursor = h;
+	size_t count = 0;
+
+	while (cursor != NULL)
 	{
-		new_node->next = *head;
-		*head = new_node;
-		return (new_node);
+		count += 1;
+		cursor = cursor->next;
 	}
-	else
-	{
-		node_after = *head;
-		for (nodes = 0; nodes < (idx - 1); nodes++)
-			node_index = node_index->next;
-		for (nodes = 0; nodes < idx; nodes++)
-			node_after = node_after->next;
-		node_index->next = new_node;
-		new_node->next = node_after;
-		return (new_node);
-	}
+	return (count);
 }
